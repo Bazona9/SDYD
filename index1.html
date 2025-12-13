@@ -7,9 +7,6 @@
   <style>
     * {margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif;}
     body {
-    
-      
-
       background: url('image/bg-flowers.jpg') no-repeat center center fixed;
       background-size: cover;
       color:#333;
@@ -48,6 +45,24 @@
       background:#ffe6ec; transition:0.3s;
     }
     nav a:hover {background:#ff6f91; color:#fff;}
+
+    /* Back Button */
+    .back-home {
+      margin:20px;
+    }
+    .back-home a {
+      display:inline-block;
+      text-decoration:none;
+      padding:10px 20px;
+      background:#ff6f91;
+      color:#fff;
+      border-radius:25px;
+      font-weight:600;
+      transition:0.3s;
+    }
+    .back-home a:hover {
+      background:#ff3f6e;
+    }
 
     /* Main Layout */
     .container {
@@ -125,7 +140,9 @@
   <header>
     <div class="top-bar">
       <div class="logo">🌸 FlowerShop</div>
-      <div class="search-bar"><input type="search" placeholder="Search flowers..."/></div>
+      <div class="search-bar">
+        <input type="search" id="searchBox" placeholder="Search flowers..." onkeyup="searchFunction()"/>
+      </div>
       <div class="icons">
         <a href="#"><img src="image/login.png" alt="Login"/></a>
         <a href="#"><img src="image/customer-support.png" alt="Support"/></a>
@@ -143,24 +160,29 @@
     </nav>
   </header>
 
+  <!-- Back to Home -->
+  <div class="back-home">
+    <a href="index.html">⬅ العودة إلى الصفحة الرئيسية</a>
+  </div>
+
   <!-- Main Content -->
-  <div class="container">
+  <div class="container searchable">
     <div class="product-section">
       <!-- Gallery -->
       <div class="gallery">
         <img src="image/1.webp" alt="Bouquet Lexie" class="main-image"/>
         <div class="sizes-gallery">
-          <div class="size-card">
+          <div class="size-card searchable">
             <img src="image/1-2.webp" alt="Small Bouquet"/>
             <h4>Small</h4>
             <span>$18.95</span>
           </div>
-          <div class="size-card">
+          <div class="size-card searchable">
             <img src="image/1-2.webp" alt="Medium Bouquet"/>
             <h4>Medium</h4>
             <span>$23.95</span>
           </div>
-          <div class="size-card">
+          <div class="size-card searchable">
             <img src="image/1-2.webp" alt="Large Bouquet"/>
             <h4>Large</h4>
             <span>$28.95</span>
@@ -169,7 +191,7 @@
       </div>
 
       <!-- Info -->
-      <div class="info">
+      <div class="info searchable">
         <h2>Bouquet Lexie</h2>
         <p>
           This beautiful bouquet with different flower varieties is surprisingly versatile. 
@@ -187,5 +209,21 @@
   <footer>
     © 2025 Flower Shop. All rights reserved.
   </footer>
+
+  <!-- Search Script -->
+  <script>
+    function searchFunction() {
+      let query = document.getElementById("searchBox").value.toLowerCase();
+      let elements = document.querySelectorAll(".searchable");
+
+      elements.forEach(el => {
+        if (el.textContent.toLowerCase().includes(query)) {
+          el.style.display = "";
+        } else {
+          el.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
 </html>
